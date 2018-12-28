@@ -2,16 +2,16 @@ require('dotenv').config()
 
 const fs = require('fs');
 const Discord = require('discord.js');
-const { Pool } = require('pg');
+// const { Pool } = require('pg');
 
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true
-});
+// const pool = new Pool({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: true
+// });
 
 
 
