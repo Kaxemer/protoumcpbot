@@ -1,7 +1,7 @@
 CREATE TABLE aliases (
     id serial NOT NULL,
     alias character varying(50) NOT NULL,
-    game_id integer NOT NULL
+    game_id integer REFERENCES games(id)
 );
 
 CREATE TABLE games (
