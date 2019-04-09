@@ -8,11 +8,13 @@
     "start": "node index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "UMCP Gaming",
   "license": "ISC",
   "dependencies": {
+    "bufferutil": "^4.0.1",
     "discord.js": "^11.4.2",
     "dotenv": "^6.2.0",
+    "erlpack": "github:hammerandchisel/erlpack",
     "pg": "^7.7.1"
   },
   "engines": {
