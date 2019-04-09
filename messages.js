@@ -9,8 +9,10 @@ module.exports = (client, db, message) => {
 
   // Check for commands
   if(message.content.startsWith(config.prefix)) {
-    const args = message.content.slice(config.prefix.length).split(/ +/);
-    const commandName = args.shift().toLowerCase();
+    // Regex magic to seperate args, allowing args with spaces to be
+    // encapsulated using single or double quotes (you can even nest quotes!)
+    const args = message.content.match(/('[^']*')|("[^"]*")|[^\s]+/g);
+    const commandName = args.shift().slice(config.prefix.length).toLowerCase();
 
     const command = client.commands.get(commandName)
     || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));

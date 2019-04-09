@@ -24,13 +24,15 @@ for (const file of commandFiles) {
   client.commands.set(command.name, command);
 }
 
+// Setup cooldowns
 client.cooldowns = new Discord.Collection();
 
-
+// Wait for client to be ready
 client.once('ready', () => {
   console.log('Ready!');
 });
 
+// Handle messages
 client.on('message', message => messages(client, db, message));
 
 client.login(process.env.DISCORD_TOKEN);
