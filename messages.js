@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const config = require('./config/config.json');
 
-module.exports = (client, message) => {
+module.exports = (client, db, message) => {
   console.log(message.content);
 
   // Ingnore messages from bots
@@ -24,7 +24,7 @@ module.exports = (client, message) => {
         return message.channel.send(`You didn't provide the proper arguments, ${message.author}`);
       }
 
-      if (!client.cooldowns.has(command.naFme)) {
+      if (!client.cooldowns.has(command.name)) {
         client.cooldowns.set(command.name, new Discord.Collection());
       }
 
@@ -47,7 +47,7 @@ module.exports = (client, message) => {
       setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
       try {
-        command.execute(message, args);
+        command.execute(client, db, message, args);
       }
       catch (error) {
         console.error(error);

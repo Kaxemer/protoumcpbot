@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const fs = require('fs');
 const Discord = require('discord.js');
-// const { Pool } = require('pg');
+const { Pool } = require('pg');
 
 const messages = require('./messages.js')
 const config = require('./config/config.json')
@@ -10,10 +10,9 @@ const config = require('./config/config.json')
 // Initialize client
 const client = new Discord.Client();
 
-// const pool = new Pool({
-//   connectionString: process.env.DATABASE_URL,
-//   ssl: true
-// });
+// Initialize db
+const db = new Pool();
+db.connect();
 
 
 // Read commands from command directory
@@ -32,6 +31,6 @@ client.once('ready', () => {
   console.log('Ready!');
 });
 
-client.on('message', message => messages(client, message));
+client.on('message', message => messages(client, db, message));
 
 client.login(process.env.DISCORD_TOKEN);
