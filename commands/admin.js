@@ -10,9 +10,11 @@ module.exports = {
     if(args.length != 2) {
       return message.channel.send('You did not provide the correct number of arguments');
     }
+
     const discord_id = args[1];
     if(args[0] === 'add') {
       const text = 'INSERT INTO admins (discord_id) VALUES ($1)';
+      
       db.query(text, [discord_id])
         .then(res => {
           message.channel.send(`Added ${discord_id} to admin list`);
@@ -20,6 +22,7 @@ module.exports = {
         .catch(e => console.error(e.stack));
     } else if(args[0] === 'remove') {
       const text = 'DELETE FROM admins WHERE discord_id=$1';
+
       db.query(text, [discord_id])
         .then(res => {
           message.channel.send(`Removed ${discord_id} from admin list`);
