@@ -2,6 +2,7 @@ module.exports = {
   name: 'name of the command',
   description: 'description of the command',
   usage: 'command <args> <args>',
+  aliases: [],
   args: false, // does this command take arguments?
   guildOnly: true, // does this command only work in a guild?
   adminOnly: false, // is this command only for admins?

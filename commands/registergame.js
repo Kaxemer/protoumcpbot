@@ -4,6 +4,7 @@ module.exports = {
   usage: 'registergame <game_name> <role_id>',
   guildOnly: true,
   adminOnly: true,
+  args: true,
   execute(client, db, message, args) {
     if(args.length != 2) {
       message.channel.send('Incorrect number of arguments')
@@ -16,7 +17,6 @@ module.exports = {
       const text = "INSERT INTO games(discord_id, name) VALUES ($1, $2) RETURNING *";
       db.query(text, [role_id, game_name])
         .then(res => {
-          console.log(res.rows[0]);
           message.channel.send('Added game to `!addgame`');
         })
         .catch(e => console.error(e.stack));

@@ -19,6 +19,9 @@ module.exports = (client, db, message) => {
 
     // If this is a command
     if (command) {
+      if(command.adminOnly) {
+        // Only continue if the user submitting this command is an admin
+      }
       if (command.guildOnly && message.channel.type !== 'text') {
         return message.channel.reply('I can\'t execute that comand in the DMs.')
       }
