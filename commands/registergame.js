@@ -5,7 +5,7 @@ module.exports = {
   guildOnly: true,
   adminOnly: true,
   args: true,
-  execute(client, db, message, args) {
+  async execute(client, db, message, args) {
     if(args.length != 2) {
       message.channel.send('Incorrect number of arguments')
       return;

@@ -6,6 +6,10 @@ CREATE TABLE aliases (
 
 CREATE TABLE games (
     id serial NOT NULL,
-    discord_id integer NOT NULL,
+    discord_id varchar(20) NOT NULL,
     name varchar(50) NOT NULL
+);
+
+CREATE TABLE admins (
+  discord_id varchar(20) NOT NULL
 );

@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const config = require('./config/config.json');
 
-module.exports = (client, db, message) => {
+module.exports = async (client, db, message) => {
   console.log(message.content);
 
   // Ingnore messages from bots
@@ -21,6 +21,18 @@ module.exports = (client, db, message) => {
     if (command) {
       if(command.adminOnly) {
         // Only continue if the user submitting this command is an admin
+        const text = 'SELECT * FROM admins WHERE discord_id=$1';
+        var success = await db.query(text, [message.author.id])
+          .then(res => {
+            // If we didn't find an admin
+            if(res.rowCount == 0) {
+              message.channel.send(`You don't have permission to use that command, ${message.author}`);
+              return false;
+            }
+            return true;
+          })
+          .catch(e => console.log(e.stack))
+          if(!success) return;
       }
       if (command.guildOnly && message.channel.type !== 'text') {
         return message.channel.reply('I can\'t execute that comand in the DMs.')

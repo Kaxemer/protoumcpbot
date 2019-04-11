@@ -5,7 +5,7 @@ module.exports = {
   args: false, // does this command take arguments?
   guildOnly: true, // does this command only work in a guild?
   adminOnly: false, // is this command only for admins?
-  execute(client, db, message, args) {
+  async execute(client, db, message, args) {
     db.query('SELECT (name) FROM games')
       .then(res => {
         games = "Games: \n"

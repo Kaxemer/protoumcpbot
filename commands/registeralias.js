@@ -6,7 +6,7 @@ module.exports = {
   args: true, // does this command take arguments?
   guildOnly: true, // does this command only work in a guild?
   adminOnly: true, // is this command only for admins?
-  execute(client, db, message, args) {
+  async execute(client, db, message, args) {
     if(args.length != 2) {
       message.channel.send('Incorrect number of arguments')
       return;
